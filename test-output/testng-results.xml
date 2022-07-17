@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-07-17T22:34:16 AEST" name="Default suite" finished-at="2022-07-17T22:34:18 AEST" duration-ms="1719">
+    <groups>
+    </groups>
+    <test started-at="2022-07-17T22:34:16 AEST" name="Default test" finished-at="2022-07-17T22:34:18 AEST" duration-ms="1719">
+      <class name="vijethgumtree.apitest_validate">
+        <test-method signature="getdetails()[pri:0, instance:vijethgumtree.apitest_validate@48aca48b]" started-at="2022-07-17T22:34:16 AEST" name="getdetails" finished-at="2022-07-17T22:34:18 AEST" duration-ms="1683" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getdetails -->
+      </class> <!-- vijethgumtree.apitest_validate -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
