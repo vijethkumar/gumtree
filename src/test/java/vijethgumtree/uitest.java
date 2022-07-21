@@ -6,13 +6,16 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 
@@ -40,47 +43,52 @@ public class uitest {
 			WebDriver driver = new ChromeDriver();
 			driver.get("https://www.gumtree.com.au/");
 			driver.manage().window().maximize();
-
+			driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+			//wait = new WebDriverWait(driver, 10000);
 			driver.findElement(By.id("search-query")).sendKeys(searchString);
 			driver.findElement(By.id("search-area")).sendKeys(searchRegion);
-			Thread.sleep(3000);
+
 
 
 			driver.findElement(By.id("categoryId-wrp")).click();
-			Thread.sleep(3000);
+
 			WebElement category =  driver.findElement(By.xpath("//div[@id='categoryId-wrpwrapper']//li//div[@id='categoryId-wrp-option-20045']"));
 			hoverAndClick(driver,category);
-			Thread.sleep(3000);
+
 
 			driver.findElement(By.id("srch-radius-wrp")).click();
-			Thread.sleep(3000);
+
 			WebElement radius =  driver.findElement(By.xpath("//div[@id='srch-radius-wrpwrapper']//li//div[@id='srch-radius-wrp-option-20']"));
 			hoverAndClick(driver,radius);
-			Thread.sleep(3000);
+
 
 
 			driver.findElement(By.className("header__search-button")).click();
+
+
+			/*JavascriptExecutor js = (JavascriptExecutor) driver;
+			driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+			//Thread.sleep(3000);
+			js.executeScript("window.scrollBy(100,1800)");
+*/
 			Thread.sleep(3000);
-
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("window.scrollBy(0,1800)");
-
 			List<WebElement> searchResult = driver.findElements(By.xpath("//section[@class='search-results-page__user-ad-collection']//div[@class='user-ad-collection-new-design']//div[@class='user-ad-collection-new-design__wrapper--row']//a"));
 			Random rand = new Random();
 			int randomElement = rand.nextInt(searchResult.size()-1);
 			WebElement randomSelect = searchResult.get(randomElement);
 			hoverAndClick(driver,randomSelect);
 
+			driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 			Thread.sleep(3000);
 			String breadCrumbsAdId = driver.findElement(By.xpath("//div[@id='breadcrumbs__desktop-sentinel']//span[@class='breadcrumbs__summary']")).getText();
 
-			if (breadCrumbsAdId.split(" ")[2].isBlank())
-			{
+			if (breadCrumbsAdId.split(" ")[2].isBlank()) {
 				System.out.println("Breadcrumbs not present");
-			}
-			else if (isNumeric(breadCrumbsAdId.split(" ")[2]))
-			{
-				System.out.println("Breadcrumbs AD ID present and is a Numeric Value");
+			} else {
+				if (isNumeric(breadCrumbsAdId.split(" ")[2]))
+				{
+					System.out.println("Breadcrumbs AD ID present and is a Numeric Value");
+				}
 			}
 
 			/***********************************************************************************/
@@ -123,7 +131,7 @@ public class uitest {
 	private static void hoverAndClick(WebDriver driver, WebElement WebElement) throws InterruptedException {
 		Actions action = new Actions(driver);
 		action.moveToElement(WebElement);
-		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 		action.click().build().perform();
 
 	}

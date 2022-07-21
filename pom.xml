@@ -36,7 +36,7 @@
 	<dependency>
 	    <groupId>org.seleniumhq.selenium</groupId>
 	    <artifactId>selenium-java</artifactId>
-	    <version>4.3.0</version>
+	    <version>3.141.59</version>
 	</dependency>
 
 	<dependency>
@@ -45,6 +45,12 @@
 	    <version>5.1.1</version>
 	    <scope>test</scope>
 	</dependency>
+
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>1.2.17</version>
+      </dependency>
 	
 	<dependency>
 	    <groupId>com.googlecode.json-simple</groupId>
@@ -63,7 +69,13 @@
 	    <artifactId>poi-ooxml</artifactId>
 	    <version>5.2.2</version>
 	</dependency>
-	
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>7.6.1</version>
+          <scope>compile</scope>
+      </dependency>
+
 
   </dependencies>
 
@@ -111,5 +123,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>11</source>
+                  <target>11</target>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>
